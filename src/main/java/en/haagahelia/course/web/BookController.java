@@ -33,12 +33,12 @@ public class BookController {
 	}
 	
     @RequestMapping(value="/books", method = RequestMethod.GET)
-    public @ResponseBody List<Book> studentListRest() {	
+    public @ResponseBody List<Book> bookListRest() {	
         return (List<Book>) repository.findAll();
     } 
 	
     @RequestMapping(value="/book/{id}", method = RequestMethod.GET)
-    public @ResponseBody Book findStudentRest(@PathVariable("id") Long bookId) {	
+    public @ResponseBody Book findBookRest(@PathVariable("id") Long bookId) {	
     	return repository.findOne(bookId);
     }  
     
@@ -55,7 +55,7 @@ public class BookController {
         return "redirect:booklist";
     }
     @RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
-    public String deleteBook(@PathVariable("id") long bookId, Model model) {
+    public String deleteBook(@PathVariable("id") Long bookId, Model model) {
     	repository.delete(bookId);
     	return "redirect:/booklist";
     }
