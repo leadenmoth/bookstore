@@ -1,11 +1,16 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <title>Bookstore: book list</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>	
+	<p th:inline="text">Logged in as [[${#httpServletRequest.remoteUser}]]</p>
+	<form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+	
 	<h1>Books</h1>
 	<table class="table table-striped">
 		<tr>
@@ -22,7 +27,7 @@
 			<td th:text="${book.isbn}"></td>
 			<td th:text="${book.year}"></td>
 			<td th:text="${book.category.name}"></td>
-			<td><a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a></td>
+			<td><a sec:authorize="hasRole('ADMIN')" th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a></td>
 		</tr>	
 	</table>
 	<a href="/add" class="btn btn-success">Add Book</a>
