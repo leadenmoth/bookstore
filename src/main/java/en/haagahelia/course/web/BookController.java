@@ -32,6 +32,12 @@ public class BookController {
 		return "booklist";
 	}
 	
+	//So that logging out and in again would open booklist. There are probably better ways of doing this, but...
+	@RequestMapping(value="/", method=RequestMethod.GET)
+	public String redirect() {
+		return "redirect:/booklist";
+	}
+	
     @RequestMapping(value="/books", method = RequestMethod.GET)
     public @ResponseBody List<Book> bookListRest() {	
         return (List<Book>) repository.findAll();

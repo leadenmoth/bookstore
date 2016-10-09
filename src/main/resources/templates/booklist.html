@@ -27,7 +27,8 @@
 			<td th:text="${book.isbn}"></td>
 			<td th:text="${book.year}"></td>
 			<td th:text="${book.category.name}"></td>
-			<td><a sec:authorize="hasRole('ADMIN')" th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a></td>
+			<!-- For some reason database implementation calls Role Authority -->
+			<td><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a></td>
 		</tr>	
 	</table>
 	<a href="/add" class="btn btn-success">Add Book</a>
