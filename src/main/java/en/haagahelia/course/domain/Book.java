@@ -14,8 +14,8 @@ public class Book {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	private String title;
 	private String author;
+	private String title;
 	private int year;
 	private String isbn;
 	private double price;
@@ -25,10 +25,10 @@ public class Book {
     @JoinColumn(name = "categoryId")
 	private Category category;
 	
-	public Book(String title, String author, int year, String isbn, double price, Category category) {
+	public Book(String author, String title, int year, String isbn, double price, Category category) {
 		super();
-		this.title = title;
 		this.author = author;
+		this.title = title;
 		this.year = year;
 		this.isbn = isbn;
 		this.price = price;

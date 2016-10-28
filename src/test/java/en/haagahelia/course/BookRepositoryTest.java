@@ -24,16 +24,16 @@ public class BookRepositoryTest {
     @Test
     public void findByAuthorShouldReturnBook() {
         List<Book> books = repository.findByAuthor("Eoin Colfer");
-        
+    	//List<Book> books = repository.findByYear(1982);
         assertThat(books).hasSize(1);
-        assertThat(books.get(0).getTitle()).isEqualTo("The Hitchhiker's Guide to the Galaxy");
+        assertThat(books.get(0).getTitle()).isEqualTo("And Another Thing...");
     }
     
     @Test
     public void createNewBook() {
     	Book book = new Book("Mickey Mouse", "Walt Disney", 1928, "98764325405", 0.99, new Category("Script"));
     	repository.save(book);
-    	assertThat(book.getId()).isNotNull();
+    	assertThat(repository.findOne(book.getId())).isNotNull();
     } 
     
 
