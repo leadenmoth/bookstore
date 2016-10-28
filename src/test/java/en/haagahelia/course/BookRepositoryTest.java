@@ -36,12 +36,11 @@ public class BookRepositoryTest {
     	assertThat(repository.findOne(book.getId())).isNotNull();
     } 
     
-
-    
     @Test
     public void deleteBook() {
         List<Book> books = repository.findByAuthor("Douglas Adams");
         repository.delete(books.get(0).getId());
+        //System.out.println(books.get(0).toString());
         assertThat(repository.findOne(books.get(0).getId()) == null);
         
     }
